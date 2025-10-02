@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DhanXzz Downloader - Download Video dari Semua Platform</title>
+    <title>DhanXzz Downloader - Download Video Gratis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
@@ -42,253 +43,62 @@
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             background: var(--background);
-            min-height: 100vh;
-            padding: 15px;
             color: var(--text);
-            line-height: 1.5;
-            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
             transition: all 0.3s ease;
         }
 
         .container {
-            max-width: 100%;
+            max-width: 800px;
             margin: 0 auto;
             background: var(--surface);
-            border-radius: 16px;
-            box-shadow: 0 8px 25px var(--shadow);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
             overflow: hidden;
             animation: fadeInUp 0.6s ease-out;
-            border: 1px solid var(--border);
-        }
-
-        /* Theme Switch */
-        .theme-switch-wrapper {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-        }
-
-        .theme-switch {
-            --toggle-size: 20px;
-            --container-width: 4.5em;
-            --container-height: 2em;
-            --container-radius: 6.25em;
-            --container-light-bg: #3D7EAE;
-            --container-night-bg: #1D1F2C;
-            --circle-container-diameter: 2.7em;
-            --sun-moon-diameter: 1.7em;
-            --sun-bg: #ECCA2F;
-            --moon-bg: #C4C9D1;
-            --spot-color: #959DB1;
-            --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
-            --stars-color: #fff;
-            --clouds-color: #F3FDFF;
-            --back-clouds-color: #AACADF;
-            --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-            --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
-        }
-
-        .theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-size: var(--toggle-size);
-        }
-
-        .theme-switch__container {
-            width: var(--container-width);
-            height: var(--container-height);
-            background-color: var(--container-light-bg);
-            border-radius: var(--container-radius);
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .theme-switch__container::before {
-            content: "";
-            position: absolute;
-            z-index: 1;
-            inset: 0;
-            box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
-            border-radius: var(--container-radius)
-        }
-
-        .theme-switch__checkbox {
-            display: none;
-        }
-
-        .theme-switch__circle-container {
-            width: var(--circle-container-diameter);
-            height: var(--circle-container-diameter);
-            background-color: rgba(255, 255, 255, 0.1);
-            position: absolute;
-            left: var(--circle-container-offset);
-            top: var(--circle-container-offset);
-            border-radius: var(--container-radius);
-            box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
-            display: flex;
-            transition: var(--circle-transition);
-            pointer-events: none;
-        }
-
-        .theme-switch__sun-moon-container {
-            pointer-events: auto;
-            position: relative;
-            z-index: 2;
-            width: var(--sun-moon-diameter);
-            height: var(--sun-moon-diameter);
-            margin: auto;
-            border-radius: var(--container-radius);
-            background-color: var(--sun-bg);
-            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
-            filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .theme-switch__moon {
-            transform: translateX(100%);
-            width: 100%;
-            height: 100%;
-            background-color: var(--moon-bg);
-            border-radius: inherit;
-            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .theme-switch__spot {
-            position: absolute;
-            top: 0.75em;
-            left: 0.312em;
-            width: 0.75em;
-            height: 0.75em;
-            border-radius: var(--container-radius);
-            background-color: var(--spot-color);
-            box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
-        }
-
-        .theme-switch__spot:nth-of-type(2) {
-            width: 0.375em;
-            height: 0.375em;
-            top: 0.937em;
-            left: 1.375em;
-        }
-
-        .theme-switch__spot:nth-last-of-type(3) {
-            width: 0.25em;
-            height: 0.25em;
-            top: 0.312em;
-            left: 0.812em;
-        }
-
-        .theme-switch__clouds {
-            width: 1.25em;
-            height: 1.25em;
-            background-color: var(--clouds-color);
-            border-radius: var(--container-radius);
-            position: absolute;
-            bottom: -0.625em;
-            left: 0.312em;
-            box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color);
-            transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
-        }
-
-        .theme-switch__stars-container {
-            position: absolute;
-            color: var(--stars-color);
-            top: -100%;
-            left: 0.312em;
-            width: 2.75em;
-            height: auto;
-            transition: var(--transition);
-        }
-
-        .theme-switch_checkbox:checked + .theme-switch_container {
-            background-color: var(--container-night-bg);
-        }
-
-        .theme-switch_checkbox:checked + .theme-switchcontainer .theme-switch_circle-container {
-            left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
-        }
-
-        .theme-switch_checkbox:checked + .theme-switchcontainer .theme-switch_circle-container:hover {
-            left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em)
-        }
-
-        .theme-switch__circle-container:hover {
-            left: calc(var(--circle-container-offset) + 0.187em);
-        }
-
-        .theme-switch_checkbox:checked + .theme-switchcontainer .theme-switch_moon {
-            transform: translate(0);
-        }
-
-        .theme-switch_checkbox:checked + .theme-switchcontainer .theme-switch_clouds {
-            bottom: -4.062em;
-        }
-
-        .theme-switch_checkbox:checked + .theme-switchcontainer .theme-switch_stars-container {
-            top: 50%;
-            transform: translateY(-50%);
         }
 
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 30px;
             text-align: center;
-            position: relative;
         }
 
         .logo {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 15px;
-            display: block;
-            color: white;
         }
 
         .header h1 {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
         .brand-subtitle {
-            font-size: 0.95rem;
+            font-size: 1rem;
             opacity: 0.9;
-            margin-bottom: 12px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
         }
 
         .header p {
             opacity: 0.8;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.4;
         }
 
         .content {
-            padding: 25px 20px;
+            padding: 30px;
         }
 
-        /* Main Download Card */
         .download-card {
             background: var(--card-bg);
-            border-radius: 16px;
             padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 15px;
             border: 1px solid var(--border);
+            margin-bottom: 20px;
             box-shadow: 0 4px 12px var(--shadow);
-            transition: all 0.3s ease;
         }
 
         .input-group {
@@ -299,8 +109,6 @@
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: var(--text);
-            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -314,20 +122,13 @@
 
         .url-input {
             width: 100%;
-            padding: 14px 16px;
-            border: 1.5px solid var(--border);
+            padding: 15px 15px 15px 45px;
+            border: 2px solid var(--border);
             border-radius: 10px;
-            font-size: 15px;
+            font-size: 16px;
             background: var(--background);
             color: var(--text);
-            padding-left: 45px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
-
-        .url-input::placeholder {
-            color: var(--text-secondary);
-            font-size: 14px;
+            transition: all 0.3s;
         }
 
         .url-input:focus {
@@ -338,22 +139,21 @@
 
         .url-icon {
             position: absolute;
-            left: 16px;
+            left: 15px;
             color: var(--primary);
-            font-size: 1.1rem;
         }
 
         .download-btn {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -362,7 +162,7 @@
 
         .download-btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
         .download-btn:active {
@@ -375,8 +175,52 @@
             transform: none;
         }
 
-        /* Results Section */
-        .results-section {
+        .loading {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid rgba(59, 130, 246, 0.2);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+        }
+
+        .success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+
+        .message.show {
+            display: flex;
+        }
+
+        .results {
             margin-top: 25px;
             opacity: 0;
             transform: translateY(20px);
@@ -385,7 +229,7 @@
             overflow: hidden;
         }
 
-        .results-section.show {
+        .results.show {
             opacity: 1;
             transform: translateY(0);
             max-height: 2000px;
@@ -403,14 +247,11 @@
         .results-title {
             font-size: 1.3rem;
             margin-bottom: 8px;
-            font-weight: 700;
-            color: white;
         }
 
         .results-subtitle {
             opacity: 0.9;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
         }
 
         .video-preview {
@@ -423,12 +264,9 @@
 
         .video-preview h3 {
             margin-bottom: 12px;
-            color: var(--text);
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
         }
 
         .video-container {
@@ -482,7 +320,6 @@
         .info-item i {
             color: var(--primary);
             width: 16px;
-            font-size: 0.9rem;
         }
 
         .download-options {
@@ -494,12 +331,9 @@
 
         .download-options h3 {
             margin-bottom: 15px;
-            color: var(--text);
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
         }
 
         .quality-options {
@@ -551,7 +385,6 @@
 
         .quality-name {
             font-weight: 600;
-            color: var(--text);
             font-size: 0.9rem;
         }
 
@@ -587,52 +420,28 @@
             transform: translateY(-1px);
         }
 
-        .loading {
-            text-align: center;
-            padding: 30px 20px;
-            display: none;
-        }
-
-        .loading.show {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-
-        .spinner {
-            border: 3px solid rgba(59, 130, 246, 0.2);
-            border-top: 3px solid var(--primary);
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        .loading p {
-            font-size: 1rem;
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        .error {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            padding: 14px;
-            border-radius: 10px;
-            margin-top: 15px;
-            display: none;
-            border-left: 4px solid var(--danger);
-            font-size: 0.85rem;
-        }
-
-        .error.show {
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text);
+            transition: all 0.3s;
+            z-index: 100;
         }
 
-        .error-icon {
-            font-size: 1.1rem;
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            box-shadow: 0 4px 12px var(--shadow);
         }
 
         .footer {
@@ -681,7 +490,6 @@
             transform: translateY(-1px);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -703,30 +511,25 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             body {
-                padding: 12px;
-            }
-            
-            .container {
-                border-radius: 14px;
+                padding: 15px;
             }
             
             .header {
-                padding: 25px 15px;
+                padding: 25px 20px;
             }
             
             .header h1 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             
             .content {
-                padding: 20px 15px;
+                padding: 20px;
             }
             
             .download-card {
-                padding: 20px 15px;
+                padding: 20px;
             }
             
             .video-preview,
@@ -734,12 +537,18 @@
                 padding: 18px 15px;
             }
             
-            .quality-option {
-                padding: 12px;
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
             .header h1 {
                 font-size: 1.3rem;
             }
@@ -749,7 +558,7 @@
             }
             
             .logo {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .results-title {
@@ -760,44 +569,11 @@
                 font-size: 0.9rem;
             }
         }
-
-        @media (max-width: 360px) {
-            body {
-                padding: 10px;
-            }
-            
-            .header {
-                padding: 20px 12px;
-            }
-            
-            .content {
-                padding: 15px 12px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch">
-            <input type="checkbox" id="theme-switch-checkbox" class="theme-switch__checkbox">
-            <div class="theme-switch__container">
-                <div class="theme-switch__circle-container">
-                    <div class="theme-switch__sun-moon-container">
-                        <div class="theme-switch__moon">
-                            <div class="theme-switch__spot"></div>
-                            <div class="theme-switch__spot"></div>
-                            <div class="theme-switch__spot"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="theme-switch__clouds"></div>
-                <div class="theme-switch__stars-container">
-                    <svg viewBox="0 0 113 24" fill="currentColor">
-                        <path d="M21.25 9.15l-2.67-.97-1.34-2.72a.5.5 0 00-.9 0L15 8.18l-2.67.97a.5.5 0 00-.28.67l1.34 2.72.1 3.63a.5.5 0 00.76.43l2.67-1.97 2.67 1.97a.5.5 0 00.76-.43l.1-3.63 1.34-2.72a.5.5 0 00-.28-.67zM6.25 4.15l-1.67-.61-.84-1.72a.5.5 0 00-.9 0l-.84 1.72-1.67.61a.5.5 0 00-.28.67l.84 1.72.06 2.27a.5.5 0 00.76.43l1.67-1.23 1.67 1.23a.5.5 0 00.76-.43l.06-2.27.84-1.72a.5.5 0 00-.28-.67zM14.25.15l-1.67-.61-.84-1.72a.5.5 0 00-.9 0l-.84 1.72-1.67.61a.5.5 0 00-.28.67l.84 1.72.06 2.27a.5.5 0 00.76.43l1.67-1.23 1.67 1.23a.5.5 0 00.76-.43l.06-2.27.84-1.72a.5.5 0 00-.28-.67z"></path>
-                    </svg>
-                </div>
-            </div>
-        </label>
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
     </div>
 
     <div class="container">
@@ -809,7 +585,6 @@
         </div>
 
         <div class="content">
-            <!-- Main Download Card -->
             <div class="download-card">
                 <div class="input-group">
                     <label for="urlInput">
@@ -837,13 +612,17 @@
                 <p>Memproses download video...</p>
             </div>
 
-            <div class="error" id="error">
-                <i class="error-icon fas fa-exclamation-circle"></i>
+            <div class="message error" id="error">
+                <i class="fas fa-exclamation-circle"></i>
                 <span id="errorText"></span>
             </div>
 
-            <!-- Results Section -->
-            <div class="results-section" id="resultsSection">
+            <div class="message success" id="success">
+                <i class="fas fa-check-circle"></i>
+                <span id="successText"></span>
+            </div>
+
+            <div class="results" id="results">
                 <div class="results-header">
                     <h2 class="results-title">
                         <i class="fas fa-download"></i> Video Siap Didownload!
@@ -851,7 +630,6 @@
                     <p class="results-subtitle">Pilih kualitas video yang diinginkan</p>
                 </div>
                 
-                <!-- Video Preview -->
                 <div class="video-preview">
                     <h3><i class="fas fa-play-circle"></i> Preview Video</h3>
                     <div class="video-container">
@@ -865,7 +643,6 @@
                     </div>
                 </div>
 
-                <!-- Download Options -->
                 <div class="download-options">
                     <h3><i class="fas fa-list-alt"></i> Pilihan Kualitas Download</h3>
                     <div class="quality-options" id="qualityOptions">
@@ -895,101 +672,134 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const themeSwitch = document.getElementById('theme-switch-checkbox');
+            // Elements
+            const themeToggle = document.getElementById('themeToggle');
             const urlInput = document.getElementById('urlInput');
             const downloadBtn = document.getElementById('downloadBtn');
             const loading = document.getElementById('loading');
-            const resultsSection = document.getElementById('resultsSection');
+            const results = document.getElementById('results');
             const error = document.getElementById('error');
             const errorText = document.getElementById('errorText');
+            const success = document.getElementById('success');
+            const successText = document.getElementById('successText');
             const videoPlaceholder = document.getElementById('videoPlaceholder');
             const videoInfo = document.getElementById('videoInfo');
             const qualityOptions = document.getElementById('qualityOptions');
 
-            // Theme switching
-            themeSwitch.addEventListener('change', function() {
-                if (this.checked) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
+            // Theme toggle
+            themeToggle.addEventListener('click', function() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                
+                if (isDark) {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
                     localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
                 }
             });
 
             // Load saved theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
-                themeSwitch.checked = true;
                 document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
 
+            // Download button event
             downloadBtn.addEventListener('click', handleDownload);
 
+            // Enter key event
             urlInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     handleDownload();
                 }
             });
 
+            // Input change event
             urlInput.addEventListener('input', function() {
                 hideError();
-                hideResultsSection();
+                hideSuccess();
+                hideResults();
             });
 
             // Video placeholder click event
             videoPlaceholder.addEventListener('click', function() {
                 this.innerHTML = '<i class="fas fa-sync-alt fa-spin" style="margin-right: 8px;"></i> Memuat preview...';
                 setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-play" style="margin-right: 8px;"></i> Preview video (simulasi)';
+                    this.innerHTML = '<i class="fas fa-play" style="margin-right: 8px;"></i> Preview video berhasil dimuat';
+                    showSuccess('Preview video berhasil dimuat!');
                 }, 1500);
             });
 
+            // Main download function
             async function handleDownload() {
                 const url = urlInput.value.trim();
                 
-                // Validasi URL
+                // Validation
                 if (!url) {
                     showError('⚠ Silakan masukkan URL video');
                     return;
                 }
 
-                if (!url.match(/^https?:\/\/.+/)) {
+                if (!isValidUrl(url)) {
                     showError('❌ URL tidak valid. Harus dimulai dengan http:// atau https://');
+                    return;
+                }
+
+                const platform = detectPlatform(url);
+                if (platform === 'other') {
+                    showError('❌ Platform tidak didukung. Gunakan URL dari TikTok, Instagram, YouTube, Twitter/X, atau Facebook');
                     return;
                 }
 
                 // Reset state
                 hideError();
-                hideResultsSection();
+                hideSuccess();
+                hideResults();
                 showLoading();
 
                 try {
-                    const result = await aioDownloader(url);
-                    showResultsSection(result);
+                    const result = await simulateDownload(url);
+                    showResults(result);
+                    showSuccess('✅ Video berhasil ditemukan! Pilih kualitas download di bawah.');
                 } catch (err) {
-                    showError(❌ Error: ${err.message});
+                    showError('❌ ' + err.message);
                 } finally {
                     hideLoading();
                 }
             }
 
-            async function aioDownloader(url) {
+            // Simulate download process
+            function simulateDownload(url) {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        const platform = detectPlatform(url);
-                        
-                        if (Math.random() < 0.1) {
-                            reject(new Error('Gagal mengunduh video. Silakan coba lagi atau periksa URL Anda.'));
+                        // Very low chance of error (2%)
+                        if (Math.random() < 0.02) {
+                            reject(new Error('Gagal mengunduh video. Silakan coba lagi.'));
                             return;
                         }
 
+                        const platform = detectPlatform(url);
                         const mockData = generateMockData(url, platform);
                         resolve(mockData);
-                    }, 2000);
+                    }, 1500);
                 });
             }
 
+            // URL validation
+            function isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            // Platform detection
             function detectPlatform(url) {
                 if (url.includes('tiktok.com') || url.includes('vt.tiktok.com')) return 'tiktok';
                 if (url.includes('instagram.com')) return 'instagram';
@@ -999,6 +809,7 @@
                 return 'other';
             }
 
+            // Generate mock data
             function generateMockData(url, platform) {
                 const platforms = {
                     tiktok: {
@@ -1006,7 +817,8 @@
                         icon: 'fab fa-tiktok',
                         qualities: [
                             { name: 'HD 1080p', resolution: '1920x1080', size: '15.2 MB' },
-                            { name: 'SD 720p', resolution: '1280x720', size: '8.7 MB' }
+                            { name: 'SD 720p', resolution: '1280x720', size: '8.7 MB' },
+                            { name: 'Audio Only', resolution: 'MP3', size: '2.1 MB' }
                         ],
                         duration: '00:45',
                         views: '1.2M'
@@ -1016,7 +828,8 @@
                         icon: 'fab fa-instagram',
                         qualities: [
                             { name: 'Original Quality', resolution: '1080x1350', size: '12.8 MB' },
-                            { name: 'HD 1080p', resolution: '1080x1080', size: '9.1 MB' }
+                            { name: 'HD 1080p', resolution: '1080x1080', size: '9.1 MB' },
+                            { name: 'Audio Only', resolution: 'MP3', size: '1.8 MB' }
                         ],
                         duration: '01:15',
                         views: '450K'
@@ -1027,7 +840,8 @@
                         qualities: [
                             { name: '1080p Full HD', resolution: '1920x1080', size: '45.6 MB' },
                             { name: '720p HD', resolution: '1280x720', size: '22.1 MB' },
-                            { name: '480p', resolution: '854x480', size: '12.8 MB' }
+                            { name: '480p', resolution: '854x480', size: '12.8 MB' },
+                            { name: 'Audio Only', resolution: 'MP3', size: '3.5 MB' }
                         ],
                         duration: '10:25',
                         views: '2.5M'
@@ -1037,7 +851,8 @@
                         icon: 'fab fa-twitter',
                         qualities: [
                             { name: 'HD Quality', resolution: '1280x720', size: '8.9 MB' },
-                            { name: 'SD Quality', resolution: '640x360', size: '4.2 MB' }
+                            { name: 'SD Quality', resolution: '640x360', size: '4.2 MB' },
+                            { name: 'Audio Only', resolution: 'MP3', size: '1.2 MB' }
                         ],
                         duration: '02:30',
                         views: '890K'
@@ -1047,7 +862,8 @@
                         icon: 'fab fa-facebook',
                         qualities: [
                             { name: 'HD 1080p', resolution: '1920x1080', size: '18.7 MB' },
-                            { name: 'SD 720p', resolution: '1280x720', size: '10.3 MB' }
+                            { name: 'SD 720p', resolution: '1280x720', size: '10.3 MB' },
+                            { name: 'Audio Only', resolution: 'MP3', size: '2.4 MB' }
                         ],
                         duration: '03:15',
                         views: '1.8M'
@@ -1074,6 +890,7 @@
                 };
             }
 
+            // UI Functions
             function showLoading() {
                 loading.classList.add('show');
                 downloadBtn.disabled = true;
@@ -1086,7 +903,7 @@
                 downloadBtn.innerHTML = '<i class="fas fa-rocket"></i> Download Sekarang';
             }
 
-            function showResultsSection(data) {
+            function showResults(data) {
                 // Update video info
                 videoInfo.innerHTML = `
                     <div class="info-item">
@@ -1109,7 +926,7 @@
 
                 // Update quality options
                 qualityOptions.innerHTML = '';
-                data.qualities.forEach((quality, index) => {
+                data.qualities.forEach((quality) => {
                     const option = document.createElement('div');
                     option.className = 'quality-option';
                     option.innerHTML = `
@@ -1121,7 +938,7 @@
                             </div>
                         </div>
                         <div class="download-action">
-                            <button class="download-quality-btn" onclick="downloadVideo('${quality.name}', '${quality.size}')">
+                            <button class="download-quality-btn" onclick="downloadVideo('${quality.name}', '${quality.size}', '${data.platform}')">
                                 <i class="fas fa-download"></i> Download
                             </button>
                         </div>
@@ -1129,35 +946,41 @@
                     qualityOptions.appendChild(option);
                 });
 
-                // Show results section
-                resultsSection.classList.add('show');
+                // Show results
+                results.classList.add('show');
                 setTimeout(() => {
-                    resultsSection.scrollIntoView({ 
+                    results.scrollIntoView({ 
                         behavior: 'smooth', 
                         block: 'start' 
                     });
                 }, 300);
             }
 
-            function hideResultsSection() {
-                resultsSection.classList.remove('show');
+            function hideResults() {
+                results.classList.remove('show');
             }
 
             function showError(message) {
                 errorText.textContent = message;
                 error.classList.add('show');
+                success.classList.remove('show');
             }
 
             function hideError() {
                 error.classList.remove('show');
             }
 
-            // Global function untuk download
-            window.downloadVideo = function(quality, size) {
-                alert(🚀 Memulai download: ${quality} (${size})\n\nFile akan segera terdownload...);
-            };
+            function showSuccess(message) {
+                successText.textContent = message;
+                success.classList.add('show');
+                error.classList.remove('show');
+            }
 
-            // Contoh URL untuk testing
+            function hideSuccess() {
+                success.classList.remove('show');
+            }
+
+            // Example URLs rotation
             const exampleUrls = [
                 'https://vt.tiktok.com/ZSD7tYqMd/',
                 'https://instagram.com/p/Cxample123/',
@@ -1166,7 +989,6 @@
                 'https://facebook.com/watch/?v=123456789'
             ];
 
-            // Rotate example URLs in placeholder
             let urlIndex = 0;
             function rotateExampleUrl() {
                 urlInput.placeholder = exampleUrls[urlIndex];
@@ -1176,6 +998,11 @@
             setInterval(rotateExampleUrl, 3000);
             rotateExampleUrl();
         });
+
+        // Global download function
+        function downloadVideo(quality, size, platform) {
+            alert('🚀 Memulai download: ' + quality + ' (' + size + ') dari ' + platform + '\n\nFile akan segera terdownload...');
+        }
     </script>
 </body>
 </html>
