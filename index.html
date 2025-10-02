@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Downloader - DhanXzz Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ff4757;
+            --secondary: #ff6b81;
+            --accent: #3742fa;
+            --dark: #2f3542;
+            --darker: #1e2129;
+            --light: #f1f2f6;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #2f3542 100%);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 71, 87, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(55, 66, 250, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 107, 129, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+        }
+
+        .side-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .store-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .store-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        }
+
+        .store-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .website-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-title i {
+            color: var(--primary);
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-label i {
+            color: var(--accent);
+        }
+
+        .url-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--light);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .url-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .url-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px var(--accent), 0 0 15px rgba(55, 66, 250, 0.3);
+        }
+
+        .paste-btn {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .paste-btn:hover {
+            background: rgba(55, 66, 250, 0.1);
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.5);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature i {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-left: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid var(--card-border);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .video-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .video-thumb {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-title {
+            font-size: 15px;
+            color: var(--light);
+            line-height: 1.5;
+        }
+
+        .download-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .hd-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .sd-btn {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+
+        .mp3-btn {
+            background: linear-gradient(135deg, var(--accent), #5352ed);
+        }
+
+        /* Side Card Styles */
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .jb-groups {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .jb-group {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .jb-group:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .game-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .ff-ml-icon {
+            background: linear-gradient(135deg, #ff4757, #3742fa);
+        }
+
+        .roblox-icon {
+            background: linear-gradient(135deg, #9c88ff, #8c7ae6);
+        }
+
+        .jb-group h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .jb-group p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .join-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .join-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item i {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .contact-text {
+            font-size: 14px;
+        }
+
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .wa-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            width: 100%;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                gap: 20px;
+            }
+            
+            .main-card, .side-card {
+                padding: 20px;
+            }
+            
+            .store-title {
+                font-size: 26px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <div class="container">
+        <!-- Main Downloader Section -->
+        <div class="main-card">
+            <div class="header">
+                <div class="store-logo">
+                    <div class="logo-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div>
+                        <h1 class="store-title">DhanXzz Store</h1>
+                        <p class="store-subtitle">TikTok Video Downloader</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website Information -->
+            <div class="website-info">
+                <h3 class="info-title">
+                    <i class="fas fa-info-circle"></i>
+                    Tentang Website Ini
+                </h3>
+                <p class="info-text">
+                    Website TikTok Downloader dari DhanXzz Store memungkinkan Anda mengunduh video TikTok dengan mudah dan cepat. 
+                    Cukup tempel link video TikTok, dan Anda bisa mendownload video dalam kualitas HD, SD, atau format MP3. 
+                    Semua proses dilakukan secara gratis tanpa perlu registrasi!
+                </p>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-link"></i>
+                    URL Video TikTok
+                </label>
+                <div class="url-input-container">
+                    <input 
+                        type="text" 
+                        id="url" 
+                        class="url-input" 
+                        placeholder="Tempel URL video TikTok di sini"
+                    >
+                    <button class="paste-btn" id="pasteBtn" title="Tempel dari clipboard">
+                        <i class="fas fa-paste"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button id="btn" class="download-btn">
+                <i class="fas fa-download"></i>
+                Download Video TikTok
+            </button>
+
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <span class="feature-text">Proses Cepat & Mudah</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-hd-video"></i>
+                    <span class="feature-text">Kualitas HD Terjaga</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="feature-text">100% Aman & Gratis</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-music"></i>
+                    <span class="feature-text">Download MP3 Audio</span>
+                </div>
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Memproses video TikTok...</p>
+            </div>
+
+            <div id="result" class="result">
+                <div class="video-info">
+                    <img id="thumb" class="video-thumb" src="" alt="Video Thumbnail">
+                    <p id="title" class="video-title"></p>
+                </div>
+                <div class="download-options">
+                    <a id="hd" href="#" class="option-btn hd-btn" target="_blank">
+                        <i class="fas fa-hd-video"></i>
+                        Download HD
+                    </a>
+                    <a id="sd" href="#" class="option-btn sd-btn" target="_blank">
+                        <i class="fas fa-video"></i>
+                        Download SD
+                    </a>
+                    <a id="mp3" href="#" class="option-btn mp3-btn" target="_blank">
+                        <i class="fas fa-music"></i>
+                        Download MP3
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Information Section -->
+        <div class="side-card">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i>
+                Join Grup JB Kami
+            </h2>
+            <div class="jb-groups">
+                <div class="jb-group">
+                    <div class="game-icon ff-ml-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Free Fire & Mobile Legends</h3>
+                    <p>Grup JB untuk Free Fire dan Mobile Legends. Diamond murah, event harian, dan harga spesial untuk member!</p>
+                    <a href="https://chat.whatsapp.com/LGMRvQahrJF4vroualNQ3A" class="join-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Join Grup
+                    </a>
+                </div>
+                
+                <div class="jb-group">
+                    <div class="game-icon roblox-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Roblox All Game</h3>
+                    <p>JB untuk semua game Roblox! Robux murah, item eksklusif, dan akses game premium dengan harga terjangkau.</p>
+                    <a href="https://chat.whatsapp.com/GDS2bICotaU5oNt2lYd4Bj" class="join-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Join Grup
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="section-title">
+                <i class="fas fa-headset"></i>
+                Kontak DhanXzz Store
+            </h2>
+            <div class="contact-section">
+                <div class="contact-item">
+                    <i class="fas fa-store"></i>
+                    <div class="contact-text">
+                        <strong>DhanXzz Store</strong><br>
+                        JB Service & TikTok Downloader
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="contact-text">
+                        <strong>WhatsApp</strong><br>
+                        Hubungi kami untuk info JB
+                    </div>
+                </div>
+                <a href="https://wa.me/6287748834200" class="wa-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2023 DhanXzz Store - TikTok Downloader & JB Service Terpercaya</p>
+        <p>Free Fire JB | Mobile Legends JB | Roblox All Game JB</p>
+    </div>
+
+    <script>
+        // Fungsi untuk menempelkan teks dari clipboard
+        document.getElementById('pasteBtn').addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('url').value = text;
+                
+                // Tampilkan feedback visual
+                const btn = document.getElementById('pasteBtn');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.style.color = '#00ff88';
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-paste"></i>';
+                    btn.style.color = 'var(--accent)';
+                }, 1500);
+            } catch (err) {
+                alert('Tidak dapat menempel dari clipboard. Silakan tempel manual (Ctrl+V).');
+            }
+        });
+
+        // Fungsi untuk mendownload video
+        async function dl() {
+            const url = document.getElementById('url').value.trim();
+            if (!url) {
+                showNotification('Masukkan link TikTok!', 'error');
+                return;
+            }
+
+            // Validasi URL TikTok
+            if (!url.includes('tiktok.com')) {
+                showNotification('URL TikTok tidak valid! Pastikan URL berasal dari TikTok.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+            loading.style.display = 'block';
+            result.style.display = 'none';
+
+            try {
+                const api = `https://api.nvidiabotz.xyz/download/tiktok?url=${encodeURIComponent(url)}`;
+                const res = await fetch(api);
+                const json = await res.json();
+
+                if (!json.status) throw new Error(json.message || 'Gagal mengunduh video');
+
+                const { video_hd, video_sd, mp3, thumbnail, title } = json.result;
+
+                // Auto-download HD
+                const a = document.createElement('a');
+                a.href = video_hd;
+                a.download = 'tiktok-dhanxzz-store.mp4';
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Tampilkan hasil lengkap
+                document.getElementById('thumb').src = thumbnail;
+                document.getElementById('title').textContent = title;
+                document.getElementById('hd').href = video_hd;
+                document.getElementById('sd').href = video_sd;
+                document.getElementById('mp3').href = mp3;
+                result.style.display = 'block';
+                
+                showNotification('Video berhasil diunduh!', 'success');
+            } catch (e) {
+                showNotification(e.message || 'Terjadi kesalahan server. Silakan coba lagi.', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-download"></i> Download Video TikTok';
+                loading.style.display = 'none';
+            }
+        }
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type) {
+            // Hapus notifikasi sebelumnya jika ada
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            // Styling notifikasi
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '12px 20px';
+            notification.style.borderRadius = '10px';
+            notification.style.color = 'white';
+            notification.style.fontWeight = '500';
+            notification.style.zIndex = '1000';
+            notification.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
+            notification.style.transform = 'translateX(100%)';
+            notification.style.transition = 'transform 0.3s ease';
+            
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #00ff88, #00cc6a)';
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #ff6b6b, #ff5252)';
+            }
+            
+            document.body.appendChild(notification);
+            
+            // Animasi masuk
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Hapus setelah 3 detik
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Event listener untuk tombol download
+        document.getElementById('btn').addEventListener('click', dl);
+
+        // Enter key support
+        document.getElementById('url').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                dl();
+            }
+        });
+
+        // Validasi input URL secara real-time
+        document.getElementById('url').addEventListener('input', function() {
+            const url = this.value.trim();
+            const btn = document.getElementById('btn');
+            
+            if (url.includes('tiktok.com')) {
+                btn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+            } else {
+                btn.style.background = 'linear-gradient(135deg, #666, #888)';
+            }
+        });
+    </script>
+</body>
+</html>
