@@ -11,6 +11,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         :root {
@@ -22,11 +23,28 @@
             --light: #f1f2f6;
             --card-bg: rgba(255, 255, 255, 0.1);
             --card-border: rgba(255, 255, 255, 0.15);
+            --text-primary: #f1f2f6;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --primary: #ff4757;
+            --secondary: #ff6b81;
+            --accent: #3742fa;
+            --dark: #f1f2f6;
+            --darker: #dfe4ea;
+            --light: #2f3542;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --text-primary: #2f3542;
+            --text-secondary: rgba(47, 53, 66, 0.7);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #2f3542 100%);
-            color: var(--light);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, var(--dark) 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -49,6 +67,100 @@
             z-index: -1;
         }
 
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(30deg);
+        }
+
+        /* Container */
         .container {
             width: 100%;
             max-width: 1000px;
@@ -56,6 +168,12 @@
             grid-template-columns: 1.2fr 0.8fr;
             gap: 25px;
             margin-top: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -63,26 +181,33 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .theme-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
         }
 
-        .main-card {
+        .main-card, .side-card {
             background: var(--card-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
             border: 1px solid var(--card-border);
+            animation: cardAppear 0.6s ease;
         }
 
-        .side-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--card-border);
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header {
@@ -122,7 +247,7 @@
         }
 
         .store-subtitle {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             font-size: 16px;
             margin-top: 5px;
         }
@@ -132,13 +257,13 @@
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .info-title {
             font-size: 18px;
             margin-bottom: 10px;
-            color: var(--light);
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -150,7 +275,7 @@
 
         .info-text {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
@@ -161,7 +286,7 @@
         .input-label {
             display: block;
             margin-bottom: 10px;
-            color: var(--light);
+            color: var(--text-primary);
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -185,14 +310,14 @@
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            color: var(--light);
+            color: var(--text-primary);
             font-size: 15px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .url-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-secondary);
         }
 
         .url-input:focus {
@@ -264,7 +389,7 @@
             padding: 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .feature i {
@@ -274,6 +399,7 @@
 
         .feature-text {
             font-size: 14px;
+            color: var(--text-primary);
         }
 
         .loading {
@@ -298,7 +424,7 @@
         }
 
         .loading p {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             margin-top: 10px;
         }
 
@@ -329,12 +455,12 @@
             border-radius: 10px;
             margin: 0 auto 15px;
             display: block;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .video-title {
             font-size: 15px;
-            color: var(--light);
+            color: var(--text-primary);
             line-height: 1.5;
         }
 
@@ -347,7 +473,7 @@
         .option-btn {
             padding: 12px 20px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             border-radius: 10px;
             color: white;
             text-decoration: none;
@@ -381,7 +507,7 @@
         .section-title {
             font-size: 20px;
             margin-bottom: 20px;
-            color: var(--light);
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -402,7 +528,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             transition: transform 0.3s ease;
         }
 
@@ -424,7 +550,7 @@
         }
 
         .ff-ml-icon {
-            background: linear-gradient(135deg, #ff4757, #3742fa);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
         }
 
         .roblox-icon {
@@ -434,12 +560,12 @@
         .jb-group h3 {
             font-size: 16px;
             margin-bottom: 8px;
-            color: var(--light);
+            color: var(--text-primary);
         }
 
         .jb-group p {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             margin-bottom: 12px;
             line-height: 1.4;
         }
@@ -449,12 +575,12 @@
             padding: 8px 16px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            color: var(--light);
+            color: var(--text-primary);
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .join-btn:hover {
@@ -466,7 +592,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .contact-item {
@@ -493,6 +619,7 @@
 
         .contact-text {
             font-size: 14px;
+            color: var(--text-primary);
         }
 
         .wa-btn {
@@ -517,11 +644,11 @@
         .footer {
             margin-top: 40px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-secondary);
             font-size: 14px;
             width: 100%;
             padding: 20px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--card-border);
         }
 
         @media (max-width: 768px) {
@@ -544,6 +671,24 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <i class="fab fa-tiktok"></i>
+        </div>
+        <div class="loading-text">DhanXzz Store</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-btn" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
     <div class="bg-pattern"></div>
     
     <div class="container">
@@ -706,6 +851,57 @@
     </div>
 
     <script>
+        // Simulasi loading screen
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingProgress = document.getElementById('loadingProgress');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                    }, 500);
+                }
+                loadingProgress.style.width = `${progress}%`;
+            }, 200);
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or default to 'dark'
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Update icon based on current theme
+        if (currentTheme === 'light') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update icon
+            if (newTheme === 'light') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
         // Fungsi untuk menempelkan teks dari clipboard
         document.getElementById('pasteBtn').addEventListener('click', async () => {
             try {
