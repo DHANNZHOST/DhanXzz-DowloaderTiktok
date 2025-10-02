@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DhanXzz Downloader - Download Video Semua Platform</title>
+    <title>TikTok Downloader - DhanXzz Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -14,18 +14,18 @@
         }
 
         :root {
-            --primary: #3b82f6;
-            --secondary: #60a5fa;
-            --accent: #1d4ed8;
-            --dark: #1e293b;
-            --darker: #0f172a;
-            --light: #f8fafc;
+            --primary: #ff4757;
+            --secondary: #ff6b81;
+            --accent: #3742fa;
+            --dark: #2f3542;
+            --darker: #1e2129;
+            --light: #f1f2f6;
             --card-bg: rgba(255, 255, 255, 0.1);
             --card-border: rgba(255, 255, 255, 0.15);
         }
 
         body {
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #334155 100%);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #2f3542 100%);
             color: var(--light);
             min-height: 100vh;
             display: flex;
@@ -43,15 +43,15 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(29, 78, 216, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 10% 20%, rgba(255, 71, 87, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(55, 66, 250, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 107, 129, 0.1) 0%, transparent 50%);
             z-index: -1;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 25px;
@@ -108,7 +108,7 @@
             justify-content: center;
             font-size: 28px;
             color: white;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
         }
 
         .store-title {
@@ -118,36 +118,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
         }
 
         .store-subtitle {
             color: rgba(255, 255, 255, 0.7);
             font-size: 16px;
             margin-top: 5px;
-        }
-
-        .platforms {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .platform {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .platform i {
-            color: var(--primary);
         }
 
         .website-info {
@@ -221,7 +198,7 @@
         .url-input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 2px var(--accent), 0 0 15px rgba(29, 78, 216, 0.3);
+            box-shadow: 0 0 0 2px var(--accent), 0 0 15px rgba(55, 66, 250, 0.3);
         }
 
         .paste-btn {
@@ -240,7 +217,7 @@
         }
 
         .paste-btn:hover {
-            background: rgba(29, 78, 216, 0.1);
+            background: rgba(55, 66, 250, 0.1);
         }
 
         .download-btn {
@@ -258,13 +235,13 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
             margin-bottom: 20px;
         }
 
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.5);
         }
 
         .download-btn:disabled {
@@ -397,7 +374,7 @@
         }
 
         .mp3-btn {
-            background: linear-gradient(135deg, var(--accent), #3730a3);
+            background: linear-gradient(135deg, var(--accent), #5352ed);
         }
 
         /* Side Card Styles */
@@ -447,7 +424,7 @@
         }
 
         .ff-ml-icon {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(135deg, #ff4757, #3742fa);
         }
 
         .roblox-icon {
@@ -563,15 +540,6 @@
             .features {
                 grid-template-columns: 1fr;
             }
-            
-            .platforms {
-                gap: 10px;
-            }
-            
-            .platform {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
         }
     </style>
 </head>
@@ -584,34 +552,11 @@
             <div class="header">
                 <div class="store-logo">
                     <div class="logo-icon">
-                        <i class="fas fa-download"></i>
+                        <i class="fab fa-tiktok"></i>
                     </div>
                     <div>
-                        <h1 class="store-title">DhanXzz Downloader</h1>
-                        <p class="store-subtitle">All Platform Video Downloader</p>
-                    </div>
-                </div>
-                
-                <div class="platforms">
-                    <div class="platform">
-                        <i class="fab fa-tiktok"></i>
-                        <span>TikTok</span>
-                    </div>
-                    <div class="platform">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </div>
-                    <div class="platform">
-                        <i class="fab fa-youtube"></i>
-                        <span>YouTube</span>
-                    </div>
-                    <div class="platform">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter/X</span>
-                    </div>
-                    <div class="platform">
-                        <i class="fab fa-facebook"></i>
-                        <span>Facebook</span>
+                        <h1 class="store-title">DhanXzz Store</h1>
+                        <p class="store-subtitle">TikTok Video Downloader</p>
                     </div>
                 </div>
             </div>
@@ -623,8 +568,8 @@
                     Tentang Website Ini
                 </h3>
                 <p class="info-text">
-                    DhanXzz Downloader memungkinkan Anda mengunduh video dari berbagai platform sosial media dengan mudah dan cepat. 
-                    Cukup tempel link video, dan Anda bisa mendownload video dalam berbagai kualitas atau format MP3. 
+                    Website TikTok Downloader dari DhanXzz Store memungkinkan Anda mengunduh video TikTok dengan mudah dan cepat. 
+                    Cukup tempel link video TikTok, dan Anda bisa mendownload video dalam kualitas HD, SD, atau format MP3. 
                     Semua proses dilakukan secara gratis tanpa perlu registrasi!
                 </p>
             </div>
@@ -632,14 +577,14 @@
             <div class="input-group">
                 <label class="input-label">
                     <i class="fas fa-link"></i>
-                    URL Video (TikTok, Instagram, YouTube, dll)
+                    URL Video TikTok
                 </label>
                 <div class="url-input-container">
                     <input 
                         type="text" 
                         id="url" 
                         class="url-input" 
-                        placeholder="Tempel URL video di sini"
+                        placeholder="Tempel URL video TikTok di sini"
                     >
                     <button class="paste-btn" id="pasteBtn" title="Tempel dari clipboard">
                         <i class="fas fa-paste"></i>
@@ -649,7 +594,7 @@
 
             <button id="btn" class="download-btn">
                 <i class="fas fa-download"></i>
-                Download Video
+                Download Video TikTok
             </button>
 
             <div class="features">
@@ -673,7 +618,7 @@
 
             <div id="loading" class="loading">
                 <div class="loading-spinner"></div>
-                <p>Memproses video...</p>
+                <p>Memproses video TikTok...</p>
             </div>
 
             <div id="result" class="result">
@@ -737,7 +682,7 @@
                     <i class="fas fa-store"></i>
                     <div class="contact-text">
                         <strong>DhanXzz Store</strong><br>
-                        JB Service & Video Downloader
+                        JB Service & TikTok Downloader
                     </div>
                 </div>
                 <div class="contact-item">
@@ -756,7 +701,7 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 DhanXzz Downloader - All Platform Video Downloader & JB Service Terpercaya</p>
+        <p>&copy; 2023 DhanXzz Store - TikTok Downloader & JB Service Terpercaya</p>
         <p>Free Fire JB | Mobile Legends JB | Roblox All Game JB</p>
     </div>
 
@@ -785,16 +730,13 @@
         async function dl() {
             const url = document.getElementById('url').value.trim();
             if (!url) {
-                showNotification('Masukkan link video!', 'error');
+                showNotification('Masukkan link TikTok!', 'error');
                 return;
             }
 
-            // Validasi URL platform yang didukung
-            const supportedPlatforms = ['tiktok.com', 'instagram.com', 'youtube.com', 'youtu.be', 'twitter.com', 'x.com', 'facebook.com'];
-            const isSupported = supportedPlatforms.some(platform => url.includes(platform));
-            
-            if (!isSupported) {
-                showNotification('URL tidak didukung! Gunakan link dari TikTok, Instagram, YouTube, Twitter/X, atau Facebook.', 'error');
+            // Validasi URL TikTok
+            if (!url.includes('tiktok.com')) {
+                showNotification('URL TikTok tidak valid! Pastikan URL berasal dari TikTok.', 'error');
                 return;
             }
 
@@ -808,80 +750,39 @@
             result.style.display = 'none';
 
             try {
-                // Simulasi API call untuk semua platform
-                // Dalam implementasi nyata, Anda akan menggunakan API yang sesuai untuk setiap platform
-                const platform = detectPlatform(url);
-                const mockData = generateMockData(url, platform);
-                
-                // Tampilkan hasil
-                document.getElementById('thumb').src = mockData.thumbnail;
-                document.getElementById('title').textContent = mockData.title;
-                document.getElementById('hd').href = mockData.video_hd;
-                document.getElementById('sd').href = mockData.video_sd;
-                document.getElementById('mp3').href = mockData.mp3;
+                const api = https://api.nvidiabotz.xyz/download/tiktok?url=${encodeURIComponent(url)};
+                const res = await fetch(api);
+                const json = await res.json();
+
+                if (!json.status) throw new Error(json.message || 'Gagal mengunduh video');
+
+                const { video_hd, video_sd, mp3, thumbnail, title } = json.result;
+
+                // Auto-download HD
+                const a = document.createElement('a');
+                a.href = video_hd;
+                a.download = 'tiktok-dhanxzz-store.mp4';
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Tampilkan hasil lengkap
+                document.getElementById('thumb').src = thumbnail;
+                document.getElementById('title').textContent = title;
+                document.getElementById('hd').href = video_hd;
+                document.getElementById('sd').href = video_sd;
+                document.getElementById('mp3').href = mp3;
                 result.style.display = 'block';
                 
-                showNotification('Video berhasil ditemukan! Pilih kualitas download.', 'success');
+                showNotification('Video berhasil diunduh!', 'success');
             } catch (e) {
-                showNotification(e.message || 'Terjadi kesalahan. Silakan coba lagi.', 'error');
+                showNotification(e.message || 'Terjadi kesalahan server. Silakan coba lagi.', 'error');
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-download"></i> Download Video';
+                btn.innerHTML = '<i class="fas fa-download"></i> Download Video TikTok';
                 loading.style.display = 'none';
             }
-        }
-
-        // Deteksi platform dari URL
-        function detectPlatform(url) {
-            if (url.includes('tiktok.com')) return 'tiktok';
-            if (url.includes('instagram.com')) return 'instagram';
-            if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
-            if (url.includes('twitter.com') || url.includes('x.com')) return 'twitter';
-            if (url.includes('facebook.com')) return 'facebook';
-            return 'other';
-        }
-
-        // Generate mock data untuk simulasi
-        function generateMockData(url, platform) {
-            const platformData = {
-                tiktok: {
-                    thumbnail: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                    title: 'Video TikTok Viral - DhanXzz Downloader',
-                    video_hd: '#',
-                    video_sd: '#',
-                    mp3: '#'
-                },
-                instagram: {
-                    thumbnail: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                    title: 'Instagram Reels Video - DhanXzz Downloader',
-                    video_hd: '#',
-                    video_sd: '#',
-                    mp3: '#'
-                },
-                youtube: {
-                    thumbnail: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                    title: 'YouTube Video - DhanXzz Downloader',
-                    video_hd: '#',
-                    video_sd: '#',
-                    mp3: '#'
-                },
-                twitter: {
-                    thumbnail: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                    title: 'Twitter/X Video - DhanXzz Downloader',
-                    video_hd: '#',
-                    video_sd: '#',
-                    mp3: '#'
-                },
-                facebook: {
-                    thumbnail: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                    title: 'Facebook Video - DhanXzz Downloader',
-                    video_hd: '#',
-                    video_sd: '#',
-                    mp3: '#'
-                }
-            };
-
-            return platformData[platform] || platformData.tiktok;
         }
 
         // Fungsi untuk menampilkan notifikasi
@@ -893,7 +794,7 @@
             }
             
             const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
+            notification.className = notification ${type};
             notification.textContent = message;
             
             // Styling notifikasi
@@ -948,28 +849,10 @@
             const url = this.value.trim();
             const btn = document.getElementById('btn');
             
-            const supportedPlatforms = ['tiktok.com', 'instagram.com', 'youtube.com', 'youtu.be', 'twitter.com', 'x.com', 'facebook.com'];
-            const isSupported = supportedPlatforms.some(platform => url.includes(platform));
-            
-            if (isSupported && url.length > 10) {
+            if (url.includes('tiktok.com')) {
                 btn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
             } else {
                 btn.style.background = 'linear-gradient(135deg, #666, #888)';
-            }
-        });
-
-        // Event listener untuk tombol download di hasil
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.option-btn')) {
-                e.preventDefault();
-                const btn = e.target.closest('.option-btn');
-                const quality = btn.textContent.trim();
-                showNotification(`Memulai download ${quality}...`, 'success');
-                
-                // Simulasi download
-                setTimeout(() => {
-                    showNotification(`Download ${quality} berhasil!`, 'success');
-                }, 2000);
             }
         });
     </script>
