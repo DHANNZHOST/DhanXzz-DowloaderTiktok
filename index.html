@@ -750,7 +750,8 @@
             result.style.display = 'none';
 
             try {
-                const api = https://api.nvidiabotz.xyz/download/tiktok?url=${encodeURIComponent(url)};
+                // MASALAH DIPERBAIKI DI SINI - menghapus karakter yang tidak perlu
+                const api = 'https://api.nvidiabotz.xyz/download/tiktok?url=' + encodeURIComponent(url);
                 const res = await fetch(api);
                 const json = await res.json();
 
@@ -794,7 +795,7 @@
             }
             
             const notification = document.createElement('div');
-            notification.className = notification ${type};
+            notification.className = 'notification ' + type;
             notification.textContent = message;
             
             // Styling notifikasi
